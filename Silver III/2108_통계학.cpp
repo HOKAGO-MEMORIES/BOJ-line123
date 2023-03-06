@@ -28,6 +28,7 @@ int main() {
 	sort(arr, arr + N);
 
 	double average = round(sum / N);
+	if(average == -0) average = 0;
 	int middle = arr[N / 2];
 	int range = arr[N - 1] - arr[0];
 

@@ -54,5 +54,6 @@
         "vector": "cpp",
         "xhash": "cpp",
         "xtree": "cpp"
-    }
+    },
+    "C_Cpp.errorSquiggles": "disabled"
 }
