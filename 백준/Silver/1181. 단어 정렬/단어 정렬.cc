@@ -4,34 +4,39 @@
 using namespace std;
 
 bool compare(string a, string b) {
-	if (a.length() == b.length()) {
+	if (a.size() == b.size()) {
 		return a < b;
 	}
-	else {
-		return a.length() < b.length();
-	}
+	return a.size() < b.size();
 }
 
-int main() {
-
-	int N;
+void solve() {
+    int N;
 	cin >> N;
 
 	vector<string> word;
-	string str;
 
 	for (int i = 0; i < N; i++) {
+		string str;
 		cin >> str;
 		word.push_back(str);
 	}
 
 	sort(word.begin(), word.end(), compare);
+    
+    word.erase(unique(word.begin(), word.end()), word.end());
 
-	for (int j = 0; j < N; j++) {
-		if (j > 0 && word[j] == word[j - 1])
-			continue;
-		cout << word[j] << endl;
-	}
+	for (const string &w : word)
+        cout << w << '\n';
+}
 
-	return 0;
+int main() {
+    
+    ios_base::sync_with_stdio(false);
+	cin.tie(NULL);
+	cout.tie(NULL);
+    
+	solve();
+
+    return 0;
 }
