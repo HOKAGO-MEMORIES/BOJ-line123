@@ -1,21 +1,32 @@
 #include <iostream>
 #include <vector>
-#include <algorithm>
 using namespace std;
 
-int flatten(int N, vector<int>& boxes) {
+// 기존의 방법과 다른 빈도 배열 사용
+int flatten_2(int N, vector<int>& boxes) {
+	int height[101] = {};
+	for (int h : boxes) height[h]++;
+
+	int low = 1, high = 100;
+
 	while (N--) {
-		vector<int>::iterator max_it = max_element(boxes.begin(), boxes.end());
-		vector<int>::iterator min_it = min_element(boxes.begin(), boxes.end());
+		while (height[low] == 0) low++;
+		while (height[high] == 0) high--;
 
-		if (*max_it - *min_it <= 1)
-			return *max_it - *min_it;
+		if (high - low <= 1)
+			break;
 
-		(*max_it)--;
-		(*min_it)++;
+		height[high]--;
+		height[high - 1]++;
+
+		height[low]--;
+		height[low + 1]++;
 	}
 
-	return *max_element(boxes.begin(), boxes.end()) - *min_element(boxes.begin(), boxes.end());
+	while (height[low] == 0) low++;
+	while (height[high] == 0) high--;
+
+	return high - low;
 }
 
 int main(int argc, char** argv)
@@ -32,7 +43,7 @@ int main(int argc, char** argv)
 		for (int i = 0; i < 100; i++)
 			cin >> boxes[i];
 
-		int ans = flatten(N, boxes);
+		int ans = flatten_2(N, boxes);
 		cout << "#" << test_case << " " << ans << '\n';
 	}
 
