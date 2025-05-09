@@ -21,12 +21,8 @@ int main(int argc, char** argv)
 		int p, q, r, s, w;
 		cin >> p >> q >> r >> s >> w;
 
-
-
 		int ans = checkCharge(p, q, r, s, w);
 		cout << "#" << test_case << " " << ans << '\n';
-
-
 	}
 	return 0;
 }
