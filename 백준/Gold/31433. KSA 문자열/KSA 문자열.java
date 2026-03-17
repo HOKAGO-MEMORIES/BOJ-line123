@@ -10,7 +10,10 @@ public class Main {
     }
 
     static int solve(String X) {
-        int ans = Math.max(Math.max(findString(X, "KSA"), findString(X, "SAK") - 1), findString(X, "AKS") - 2);
+        int kas = findString(X, "KSA");
+        int sak = Math.min(findString(X, "SAK"), X.length() - 1);
+        int aks = Math.min(findString(X, "AKS"), X.length() - 2);
+        int ans = Math.max(Math.max(kas, sak), aks);
         return (X.length() - ans) * 2;
     }
 
