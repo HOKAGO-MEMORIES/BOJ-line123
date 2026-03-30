@@ -2,7 +2,7 @@
 #include <queue>
 using namespace std;
 
-bool visited[2001][2001];
+bool visited[1001][1001];
 
 void solve(int S) {
 	queue<pair<int , pair<int, int>>> q;
@@ -21,12 +21,12 @@ void solve(int S) {
 			return;
 		}
 
-		if (sum > 0 && sum < 2000 && !visited[sum][sum]) {
+		if (sum > 0 && sum <= 1000 && !visited[sum][sum]) {
 			visited[sum][sum] = true;
 			q.push(make_pair(sum, make_pair(sum, cnt + 1)));
 		}
 			
-		if (clipboard > 0 && sum + clipboard < 2000 && !visited[clipboard][sum + clipboard]) {
+		if (clipboard > 0 && sum + clipboard <= 1000 && !visited[clipboard][sum + clipboard]) {
 			visited[clipboard][sum + clipboard] = true;
 			q.push(make_pair(clipboard, make_pair(sum + clipboard, cnt + 1)));
 		}
