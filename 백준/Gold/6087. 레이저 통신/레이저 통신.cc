@@ -14,14 +14,10 @@ int dy[] = { 0, 1, 0, -1 };
 
 struct Node {
 	int x, y, d, c;
-
-	bool operator<(const Node n) const {
-		return c > n.c;
-	}
 };
 
 int solve() {
-	priority_queue<Node> q;
+	queue<Node> q;
 	for (int i = 0; i < 4; i++) {
 		q.push({ s.first, s.second, i, 0 });
 		dist[s.first][s.second][i] = 0;
@@ -29,7 +25,7 @@ int solve() {
 
 	int ans = INF;
 	while (!q.empty()) {
-		Node cur = q.top();
+		Node cur = q.front();
 		q.pop();
 
 		if (cur.x == e.first && cur.y == e.second) {
